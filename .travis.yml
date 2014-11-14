@@ -1,0 +1,19 @@
+language: cpp
+compiler:
+  - gcc
+  - clang
+script:
+  - source /opt/qt53/bin/qt53-env.sh && qmake && make clean && make
+branches:
+  only:
+    - master
+notifications:
+  recipients:
+    - tanel.lebedev@gmail.com
+  email:
+    on_success: change
+    on_failure: always
+before_install:
+  - sudo apt-add-repository -y ppa:beineri/opt-qt532
+  - sudo apt-get -qq update
+  - sudo apt-get -qq install qt53tools
